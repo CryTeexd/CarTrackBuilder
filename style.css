@@ -5,3 +5,81 @@
     font-family: sans-serif;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    text-align: center;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(20, 30px);
+    grid-template-rows: repeat(20, 30px);
+    gap: 1px;
+    background-color: #ccc;
+    border: #555 solid 2px;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: none;
+}
+
+.cell:hover{
+    outline: 2px solid black;
+    cursor: pointer;
+}
+
+.cell.grass {
+    background-color: #7cfc00;
+}
+
+.cell.water {
+    background-color: #1e90ff;
+}
+
+.cell.road {
+    background-color: #808080;
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    justify-content: center;
+}
+
+button:hover {
+    background-color: #555;
+}
+

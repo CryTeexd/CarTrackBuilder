@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div class="container">
-        <h1>Car Track Builder</h1>
-        <div class="controls">
-            <button id="add-straight">Add Straight</button>
-            <button id="add-left">Add Left Turn</button>
-            <button id="add-right">Add Right Turn</button>
-            <button id="clear-track">Clear Track</button>
-        </div>
-        <div id="track-container"></div>
-    </div>
+    <section id="menu">
+        <button id="newMapBtn">New map</button>
+        <button id="loadMapBtn">Load map</button>
+    </section>
 
-    <script src="script.js"></script>
+
+
+    <section id="editor">
+        <h1>Car Track Builder</h1>
+        <div id="grid"></div>
+        
+        <div class="controls">
+            <button id="saveBtn">Save</button>
+            <button id="clearBtn">Clear</button>
+            <button id="importBtn">Import</button>
+            <button id="exportBtn">Export</button>
+        </div>
+    </section>
+
+    <script type="module" src="main.js"></script>
 </body>
 </html>
