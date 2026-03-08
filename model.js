@@ -22,6 +22,11 @@ export function getMap() {
     return map;
 }
 
+export function setMap(newMap) {
+    map = newMap;
+    size = newMap.length;
+}
+
 export function cycleTile(x, y) {
     const currentType = map[y][x];
     const index = types.indexOf(currentType);
