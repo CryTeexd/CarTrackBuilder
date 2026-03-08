@@ -1,41 +1,44 @@
-const type = ["grass", "road", "water"];
-
-function getRandomType(cell) {
-    for (const t of type) {
-        if (cell.classList.contains(t)) {
-            return t;
-        }
-    }
-    return null;
-}
+const types = ["grass", "road", "water"];
 
 function setType(cell, newType) {
-    for (const t of type) cell.classList.remove(t);
-    if(newType) cell.classList.add(newType);
-}
-
-function getNextType(currentType) {
-    if(currentType === null) return "grass";
-    const index = type.indexOf(currentType);
-    const nextIndex = (index + 1) % type.length;
-    return type[nextIndex];
-} 
-
-export function createGrid(gridElement, gridSize = 20) {
-    gridElement.innerHTML = "";
-    for (let i = 0; i < gridSize * gridSize; i++) {
-        const cell = document.createElement("div");
-        cell.classList.add("cell", "grass");
-        cell.dataset.x = String(i % gridSize);
-        cell.dataset.y = String(Math.floor(i / gridSize));
-        gridElement.appendChild(cell);
+    for (const t of types) {
+        cell.classList.remove(t);
     }
 
-    gridElement.addEventListener("click", (event) => {
-        if (event.target.classList.contains("cell")) {
-            const currentType = getRandomType(event.target);
-            const nextType = getNextType(currentType);
-            setType(event.target, nextType);
+    if (newType) {
+        cell.classList.add(newType);
+    }
+}
+
+export function renderGrid(gridElement, map) {
+    gridElement.innerHTML = "";
+
+    for (let y = 0; y < map.length; y++) {
+        for (let x = 0; x < map[y].length; x++) {
+            const cell = document.createElement("div");
+            cell.classList.add("cell");
+
+            if (map[y][x]) {
+                cell.classList.add(map[y][x]);
+            }
+
+            cell.dataset.x = String(x);
+            cell.dataset.y = String(y);
+
+            gridElement.appendChild(cell);
         }
+    }
+}
+
+export function attachGridEvents(gridElement, onCellClick) {
+    gridElement.addEventListener("click", (event) => {
+        const cell = event.target.closest(".cell");
+        if (!cell) return;
+
+        const x = Number(cell.dataset.x);
+        const y = Number(cell.dataset.y);
+
+        const newType = onCellClick(x, y);
+        setType(cell, newType);
     });
 }
